@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140712221212) do
+ActiveRecord::Schema.define(version: 20150714204814) do
+
+  create_table "phone_calls", force: true do |t|
+    t.string   "to"
+    t.string   "from"
+    t.string   "duration"
+    t.string   "access_code"
+    t.string   "result"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "clipboard"
+    t.string   "uuid"
+    t.string   "twilio_sid"
+    t.string   "status"
+    t.integer  "user_id"
+    t.datetime "scheduled_at"
+  end
+
+  add_index "phone_calls", ["user_id"], name: "index_phone_calls_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -19,6 +37,9 @@ ActiveRecord::Schema.define(version: 20140712221212) do
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "image"
   end
 
 end

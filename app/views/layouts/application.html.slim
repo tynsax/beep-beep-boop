@@ -3,14 +3,14 @@ html
   head
     meta[name="viewport" content="width=device-width, initial-scale=1.0"]
     title
-      = content_for?(:title) ? yield(:title) : 'Dialin'
-    meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Dialin'}"
+      = content_for?(:title) ? yield(:title) : 'Beep Beep Boop'
+    meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Beep Beep Boop'}"
     == stylesheet_link_tag "application", :media => 'all', 'data-turbolinks-track' => true
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
     == csrf_meta_tags
   body
+    == render 'layouts/messages'
     header
       == render 'layouts/navigation'
     main[role="main"]
-      == render 'layouts/messages'
       == yield

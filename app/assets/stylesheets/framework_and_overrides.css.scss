@@ -34,15 +34,51 @@ img {
 // to make views framework-neutral
 main {
   @extend .container;
-  background-color: #eee;
+  background-color: #f9f9f9;
   padding-bottom: 80px;
   width: 100%;
-  margin-top: 51px; // accommodate the navbar
+  // margin-top: 66px; // accommodate the navbar
+  padding-top: 100px;
+  min-height: 600px;
+  a {
+    color: blue;
+    &:hover {
+      background-color: inherit;
+      text-decoration: none;
+      transition:color .2s ease-out, background 1s ease-in;
+      color: #000;
+    }
   }
+  .recent-calls {
+    font-size: 1.4em;
+  }
+  .call-icon {
+    font-size: 2.0em;
+  }
+  .btn-large {
+    font-size: 2.0em;
+    text-transform: uppercase;
+    font-weght: bold
+  }
+}
 section {
   @extend .row;
   margin-top: 20px;
+}
+
+body {
+  position: relative;
+  .alert {
+    position: absolute;
+    right: 200px;
+    top: 1.0em;
+    z-index: 9999;
+    width: 300px;
+    font-size: 1.2em;
+    opacity: 0.9;
   }
+}
+
 
 // Styles for form views
 // using Bootstrap
@@ -78,4 +114,97 @@ section {
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-xs;
+}
+
+.navbar {
+    h1, h2, h3, h4 {
+    font-family: ‘Arial Black’, Gadget, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+  }  
+}
+
+// h1, h2, h3, h4 {
+//   font-family: ‘Arial Black’, Gadget, sans-serif;
+//   font-weight: bold;
+//   text-transform: uppercase;
+// }
+
+
+@mixin user-form-input {
+  font-size: 2.0em;
+  line-height: 1.2em;
+  font-family: ‘Courier New’, Courier, monospace;
+  color: #000;
+  padding: 20px 25px;
+  border: 1px solid #CCC;
+  background-color: #f9f9f9;
+}
+
+.navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: auto;
+  line-height: auto;
+  font-size: 4.0em;
+  // text-shadow: 0 0 3px #CCC;
+  color: #545454 !important;
+  &:hover {
+    // text-shadow: 0 0 4px #666;
+    // color: #FFF !important;
+  }
+  img {
+    width: 65px;
+  }
+}
+
+.navbar.navbar-default {
+  padding: 10px 0 10px 0;
+}
+
+.navbar-nav {
+  font-size: 1.8em;
+  font-family: ‘Arial Black’, Gadget, sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-top: 0.2em;
+  a {
+    &:hover {
+      background: none;
+      color: #A64B00;
+    }
+  }
+  .profile-image {
+    width: 50px;
+  }
+  .dropdown-toggle {
+    margin-top: -15px;
+    margin-bottom: -15px;
+  }
+  .dropdown {
+    text-transform: none;
+  }
+}
+
+
+#parsetext {
+  width: 80%;
+  height: 400px;
+  @include user-form-input;
+}
+
+.simple_form {
+  input[type=text] {
+    @include user-form-input;
+  }
+  .phone_call_result {
+
+  }
+}
+
+
+.jumbotron {
+  a.btn {
+    color: #FFFFFF;
+  }
 }

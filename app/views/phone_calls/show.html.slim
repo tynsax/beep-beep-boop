@@ -1,0 +1,23 @@
+p#notice = notice
+
+p
+  strong To:
+  = @phone_call.to
+p
+  strong From:
+  = @phone_call.from
+p
+  strong Duration:
+  = @phone_call.duration
+p
+  strong Access code:
+  = @phone_call.access_code
+p
+  strong Result:
+  = @phone_call.result
+
+p
+  strong Status:
+  = @phone_call.status
+
+= link_to 'Back', phone_calls_path

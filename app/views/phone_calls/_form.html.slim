@@ -1,0 +1,38 @@
+.row
+  .col-md-5
+    h3 1. Paste your conference call info here:
+    textarea#parsetext placeholder="Please call in to the meeting at 800-555-1234 x1234567 at 11:00am"
+
+  .col-md-7
+    h3 2. Confirm or edit:
+    = simple_form_for(@phone_call) do |f|
+
+      .form-inputs
+        = f.input :to
+        
+        = f.input :access_code
+
+      .form-actions
+        h3 3. Place call!
+        = f.button :submit, value: 'Join conference', class: 'btn btn-lg btn-primary'
+
+
+javascript:
+  var knwl = new Knwl('english');
+  // knwl.register(PhoneExtensions);
+
+  $('#parsetext').change(function () {
+    str = $(this).val()
+    knwl.init(str);
+    phones = knwl.get('phones');
+    dates = knwl.get('dates');
+    times = knwl.get('times');
+    console.log(phones);
+    // console.log(str)
+    if (phones[0]) {
+      $('#phone_call_to').val(phones[0].phone)
+    }
+
+    $('#new_phone_call input[type=submit]').focus();
+  });
+      

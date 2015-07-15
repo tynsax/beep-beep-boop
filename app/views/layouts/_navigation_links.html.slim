@@ -1,0 +1,13 @@
+- if user_signed_in?
+  li
+    = link_to raw('<i class="fa fa-plus-circle"></i>'), new_phone_call_path
+  li
+    = link_to raw('<i class="fa fa-sign-out"></i>'), signout_path
+  li.dropdown
+    a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"= image_tag(current_user.image, class: 'img-circle profile-image')
+    ul.dropdown-menu.pull-right
+      li
+        = link_to 'Edit Profile', user_path
+- else
+  li
+    = link_to raw('<i class="fa fa-sign-in"></i>'), signin_path
