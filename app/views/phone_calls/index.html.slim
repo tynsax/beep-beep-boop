@@ -1,25 +1,40 @@
-.container-fluid
-  .row
-    .col-md-8
-      == render 'form'
-    .col-md-4
-      h3 Recent calls
-      table.table.recent-calls
-        thead
-          tr
-            th To
-            / th Duration
-            th Access code
-            / th Result
-            th Redial
-        tbody
-          - @phone_calls.each do |phone_call|
-            tr
-              td = phone_call.to
-              / td = phone_call.from
-              / td = phone_call.duration
-              td = phone_call.access_code
-              / td = phone_call.result
-              / td = link_to 'Show', phone_call
-              td = link_to(raw('<i class="fa fa-phone"></i>'), redial_path(phone_call), class: 'call-icon')
+.container-fluid.screen-pane
+  .col-md-8
+    textarea#parsetext placeholder="Please call in to the meeting at 800-555-1234 x1234567 at 11:00am"
+  .col-md-4
+    == render 'recent_calls'
+.container-fluid.screen-pane
+  == render 'form'
+      
 
+
+
+javascript:
+  var knwl = new Knwl('english');
+  // knwl.register(PhoneExtensions);
+  var analysePaste = function(str) {
+    knwl.init(str);
+    phones = knwl.get('phones');
+    dates = knwl.get('dates');
+    times = knwl.get('times');
+    console.log(phones);
+    // console.log(str)
+    if (phones[0]) {
+      $('#phone_call_to').val(phones[0].phone)
+      $('#new_phone_call input[type=submit]').focus();
+    }
+  }
+
+  var analyseInput = function() {
+    analysePaste($('#parsetext').val());
+  }
+
+  $('#parsetext').change(function () {
+    // analyseInput();
+  });
+
+  $("#parsetext").bind('paste', function(strr) {
+    setTimeout(function() {
+        analysePaste($('#parsetext').val());
+      },100);
+  }); 

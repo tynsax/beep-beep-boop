@@ -13,4 +13,14 @@ $ ->
     $(".alert").fadeOut()
   setTimeout flashCallback, 3000
 
+  windowHeightz0r = ->
+    $('.screen-pane').each ->
+      navH = $('.navbar-default').height();
+      winH = $(window).height();
+      paneH = winH - navH;
+      $(this).css('minHeight',parseInt(paneH)+'px');
   
+  windowHeightz0r()
+
+  $(window).resize ->
+    windowHeightz0r()

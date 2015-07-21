@@ -1,0 +1,19 @@
+h3 Recent calls
+table.table.recent-calls
+  thead
+    tr
+      th To
+      / th Duration
+      th Access code
+      / th Result
+      th Redial
+  tbody
+    - @phone_calls.each do |phone_call|
+      tr
+        td = phone_call.to
+        / td = phone_call.from
+        / td = phone_call.duration
+        td = phone_call.access_code
+        / td = phone_call.result
+        / td = link_to 'Show', phone_call
+        td = link_to(raw('<i class="fa fa-phone"></i>'), redial_path(phone_call), class: 'call-icon')

@@ -1,5 +1,5 @@
 class PhoneCallsController < ApplicationController
-  before_action :authenticate_user!, except: :callback
+  before_action :authenticate_user!, except: [:callback, :conference]
   skip_before_action :verify_authenticity_token, only: [:callback, :conference]
 
   before_action :set_phone_call, only: [:show, :edit, :update, :destroy, :redial]
@@ -7,7 +7,10 @@ class PhoneCallsController < ApplicationController
   # GET /phone_calls
   # GET /phone_calls.json
   def index
-    @phone_calls = PhoneCall.where(user_id: current_user.id)
+    @phone_calls = PhoneCall.where(user_id: current_user.id).
+      group(:to, :access_code).
+      order(created_at: :desc).
+      limit(5)
     @phone_call = PhoneCall.new
   end
 
@@ -26,7 +29,8 @@ class PhoneCallsController < ApplicationController
     @new = PhoneCall.create(
         to: @phone_call.to,
         access_code: @phone_call.access_code,
-        user_id: current_user.id
+        user_id: current_user.id,
+        from: '+' + Rails.application.secrets.twilio_num.to_s
       )
     redirect_to phone_call_path(@new)
   end
@@ -36,6 +40,7 @@ class PhoneCallsController < ApplicationController
   def create
     @phone_call = PhoneCall.new(phone_call_params)
     @phone_call.user_id = current_user.id
+    @phone_call.from = '+' + Rails.application.secrets.twilio_num.to_s
     respond_to do |format|
       if @phone_call.save
         format.html { redirect_to @phone_call, notice: 'Phone call was successfully created.' }
@@ -86,8 +91,19 @@ class PhoneCallsController < ApplicationController
 
   def callback
     # received after call
-    logger.info params
-    render xml: ''
+    @phone_call = PhoneCall.find_by_uuid(params[:uuid])
+    @phone_call.update(
+        duration: params['DialCallDuration'],
+        status: params['DialCallStatus']
+      )
+    # {"AccountSid"=>"AC30c3b77fac162fe15a8aae3569b6ccb1", "ToZip"=>"94107", "FromState"=>"MD", "Called"=>"+15105164120", "FromCountry"=>"US", "CallerCountry"=>"US", "CalledZip"=>"94107", "Direction"=>"outbound-api", "FromCity"=>"BRANDYWINE", "CalledCountry"=>"US", "CallerState"=>"MD", "DialCallDuration"=>"105", "CallSid"=>"CA1e4a28ddd137dc4d7645c4282c44f4b7", "CalledState"=>"CA", "From"=>"+13015794120", "CallerZip"=>"20601", "FromZip"=>"20601", "CallStatus"=>"in-progress", "DialCallSid"=>"CAb3b0a806d403463a5a1266d43da60a69", "ToCity"=>"SAN FRANCISCO", "ToState"=>"CA", "To"=>"+15105164120", "ToCountry"=>"US", "DialCallStatus"=>"completed", "CallerCity"=>"BRANDYWINE", "ApiVersion"=>"2010-04-01", "Caller"=>"+13015794120", "CalledCity"=>"SAN FRANCISCO", "uuid"=>"7b11362f-3b7a-485c-acab-2545c8b6326c"}
+
+    response = Twilio::TwiML::Response.new do |r|
+      r.Pause 1
+      r.Say 'Your conference call is ending now. Goodbye!', voice: 'alice'
+    end
+
+    render xml: response.text
   end
 
   # DELETE /phone_calls/1

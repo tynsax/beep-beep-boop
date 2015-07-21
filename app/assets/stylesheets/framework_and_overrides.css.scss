@@ -34,7 +34,6 @@ img {
 // to make views framework-neutral
 main {
   @extend .container;
-  background-color: #f9f9f9;
   padding-bottom: 80px;
   width: 100%;
   // margin-top: 66px; // accommodate the navbar
@@ -207,4 +206,11 @@ body {
   a.btn {
     color: #FFFFFF;
   }
+}
+
+body {
+  background: image-url('booths.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
 }
