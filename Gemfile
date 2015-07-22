@@ -1,14 +1,15 @@
 source 'https://rubygems.org'
 ruby '2.2.2'
-gem 'rails'#, '4.1.1'
+
+gem 'rails'
 gem 'sqlite3'
-gem 'sass-rails', '~> 4.0.3'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'jbuilder'
+gem 'sdoc'
 gem 'spring',        group: :development
 gem 'bootstrap-sass'
 gem 'omniauth'
@@ -16,9 +17,14 @@ gem 'omniauth-github'
 gem 'simple_form'
 gem 'slim-rails'
 gem 'thin'
-gem 'twilio-ruby', '~> 4.2.1'
+gem 'twilio-ruby'
 gem 'google-api-client'
 gem 'omniauth-google-oauth2'
+
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1.1'
+gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
 group :development do
   gem 'better_errors'

@@ -117,9 +117,10 @@ body {
 
 .navbar {
     h1, h2, h3, h4 {
-    font-family: ‘Arial Black’, Gadget, sans-serif;
-    font-weight: bold;
-    text-transform: uppercase;
+    // font-family: ‘Arial Black’, Gadget, sans-serif;
+    font-family: 'Pacifico', cursive;
+    // font-weight: bold;
+    // text-transform: uppercase;
   }  
 }
 
@@ -163,7 +164,8 @@ body {
 
 .navbar-nav {
   font-size: 1.8em;
-  font-family: ‘Arial Black’, Gadget, sans-serif;
+  // font-family: ‘Arial Black’, Gadget, sans-serif;
+  font-family: 'Muli', sans-serif;
   text-transform: uppercase;
   font-weight: bold;
   padding-top: 0.2em;
@@ -209,6 +211,7 @@ body {
 }
 
 body {
+  font-family: 'Muli', sans-serif;
   background: image-url('booths.jpg') no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
