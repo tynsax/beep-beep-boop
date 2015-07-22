@@ -8,7 +8,7 @@ class PhoneCallsController < ApplicationController
   # GET /phone_calls.json
   def index
     @phone_calls = PhoneCall.where(user_id: current_user.id).
-      group(:to, :access_code).
+      group(:id, :to, :access_code).
       order(created_at: :desc).
       limit(5)
     @phone_call = PhoneCall.new
