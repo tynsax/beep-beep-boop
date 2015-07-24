@@ -1,0 +1,18 @@
+#video-holder.screen-pane
+  .brand-holder
+    h1.brand= link_to 'dmtf.in', root_url
+    h3 Automate your conference calls.
+  <!--[if gt IE 9 | (!IE)]><!-->
+    #video style="position: fixed; z-index: -99; width: 100%; height: 100%"
+      - if request.env['mobvious.device_type'] == :desktop
+        iframe frameborder="0" height="100%" width="100%" src="https://youtube.com/embed/HtvePeMEvrs?autoplay=1&controls=0&showinfo=0&autohide=1&loop=1"  
+  <!--<![endif]-->
+
+
+javascript:
+  $( function () {
+    hideVideo = function () {
+      $('#video iframe').fadeOut();
+    }
+    setTimeout('hidevideo()', 90 * 1000)
+  });
