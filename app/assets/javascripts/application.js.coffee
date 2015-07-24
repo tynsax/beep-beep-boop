@@ -19,6 +19,8 @@ $ ->
       winH = $(window).height();
       paneH = winH - navH;
       $(this).css('minHeight',parseInt(paneH)+'px');
+
+      $('.brand-holder').css('marginTop',parseInt(paneH/3) + 'px');
   
   windowHeightz0r()
 

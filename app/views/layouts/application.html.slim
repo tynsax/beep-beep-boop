@@ -9,7 +9,8 @@ html
     = stylesheet_link_tag '//fonts.googleapis.com/css?family=Muli|Pacifico'
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
     == csrf_meta_tags
-  body
+  body class="#{body_class}"
+    = render 'visitors/video' if homepage? or request.path == '/responses'
     == render 'layouts/messages'
     header
       == render 'layouts/navigation'

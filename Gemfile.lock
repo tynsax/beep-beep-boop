@@ -112,6 +112,7 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
+    flutie (2.0.0)
     font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
     foreman (0.78.0)
@@ -163,6 +164,10 @@ GEM
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.7.0)
+    mobileesp_converted (0.2.3)
+    mobvious (0.3.2)
+      mobileesp_converted (~> 0.2.0)
+      rack (>= 1.1.0)
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -336,12 +341,14 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   faker
+  flutie
   font-awesome-rails
   foreman
   google-api-client
   jbuilder
   jquery-rails
   launchy
+  mobvious
   omniauth
   omniauth-github
   omniauth-google-oauth2

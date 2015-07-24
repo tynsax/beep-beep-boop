@@ -32,12 +32,18 @@ img {
   }
 // apply styles to HTML elements
 // to make views framework-neutral
+body.phone_calls,
+body.users {
+  main {
+    padding-top: 100px;
+  }
+}
 main {
   @extend .container;
   padding-bottom: 80px;
   width: 100%;
   // margin-top: 66px; // accommodate the navbar
-  padding-top: 100px;
+  padding-top: 0;
   min-height: 600px;
   a {
     color: blue;
@@ -123,6 +129,30 @@ body {
     // text-transform: uppercase;
   }  
 }
+.brand-holder {
+  position: absolute;
+  width: 100%;
+  h3 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #F8F8F8;
+  }
+  h1.brand {
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    font-size: 8.0em;
+    a {
+      color: #FFFFFF !important;
+      &:hover {
+        text-decoration: none;
+        color: #FFFFFF !important;
+        background: none;
+        text-shadow: 1px 1px 30px #000;
+      }
+    }
+  }
+}
+
 
 // h1, h2, h3, h4 {
 //   font-family: ‘Arial Black’, Gadget, sans-serif;
@@ -141,18 +171,52 @@ body {
   background-color: #f9f9f9;
 }
 
-.navbar-brand {
+body.visitors {
+  .navbar.navbar-default {
+    background: transparent;
+  }
+  a.navbar-brand {
+    opacity: 0.5;
+    &:hover {
+      text-shadow: 0 0 1px #FFF;
+    }
+  }
+}
+body.users,
+body.phone-calls {
+  .navbar.navbar-default {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&0.95+0,0.75+100 */
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.75) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.95)), color-stop(100%,rgba(255,255,255,0.75))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0.95) 0%,rgba(255,255,255,0.75) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(255,255,255,0.95) 0%,rgba(255,255,255,0.75) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(255,255,255,0.95) 0%,rgba(255,255,255,0.75) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%,rgba(255,255,255,0.75) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2ffffff', endColorstr='#bfffffff',GradientType=0 ); /* IE6-9 */
+  }
+  a.navbar-brand {
+    opacity: 0.5;
+    color: #FFFFFF;
+    }
+    &:hover {
+      text-shadow: 0 0 1px #FFF;
+    }
+  }
+
+
+a.navbar-brand {
   padding-top: 0;
   padding-bottom: 0;
   height: auto;
   line-height: auto;
   font-size: 4.0em;
-  // text-shadow: 0 0 3px #CCC;
-  color: #545454 !important;
-  &:hover {
-    // text-shadow: 0 0 4px #666;
-    // color: #FFF !important;
-  }
+  padding-top: 0;
+  h1 {
+    padding-top: 0;
+    margin-top: 7px;
+    margin-left: 20px;
+  }  
+  
   img {
     width: 65px;
   }
@@ -172,7 +236,8 @@ body {
   a {
     &:hover {
       background: none;
-      color: #A64B00;
+      color: #F8F8F8;
+      text-shadow: 1px 1px 5px #545454;
     }
   }
   .profile-image {
@@ -201,6 +266,10 @@ body {
   .phone_call_result {
 
   }
+}
+
+.screen-pane {
+  position: relative;
 }
 
 

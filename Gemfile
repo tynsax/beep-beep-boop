@@ -21,6 +21,8 @@ gem 'twilio-ruby'
 gem 'google-api-client'
 gem 'omniauth-google-oauth2'
 gem 'font-awesome-rails'
+gem 'mobvious'
+gem 'flutie'
 
 group :development do
   gem 'better_errors'
