@@ -183,7 +183,7 @@ body.visitors {
   }
 }
 body.users,
-body.phone-calls {
+body.phone_calls {
   .navbar.navbar-default {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&0.95+0,0.75+100 */
     background: -moz-linear-gradient(top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.75) 100%); /* FF3.6+ */
@@ -196,10 +196,12 @@ body.phone-calls {
   }
   a.navbar-brand {
     opacity: 0.5;
-    color: #FFFFFF;
+    // color: #FFFFFF !important;
     }
     &:hover {
-      text-shadow: 0 0 1px #FFF;
+      // text-shadow: 0 0 1px #FFF;
+      // color: #F8F8F8;
+      // text-shadow: 1px 1px 5px #545454;
     }
   }
 
@@ -236,8 +238,8 @@ a.navbar-brand {
   a {
     &:hover {
       background: none;
-      color: #F8F8F8;
-      text-shadow: 1px 1px 5px #545454;
+      // color: #F8F8F8;
+      // text-shadow: 1px 1px 5px #545454;
     }
   }
   .profile-image {
