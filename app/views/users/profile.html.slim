@@ -8,7 +8,7 @@ h1= current_user.name
   h2 Ready to make your first call?
   h3= link_to('Beep Beep Boop dial me right in!', new_phone_call_path)
 
-  
+
 table.table
   tr
     th User Profile
@@ -17,6 +17,9 @@ table.table
     td
       = simple_form_for(@user) do |f|
         
+        .form-inputs
+          = f.input :email
+          
         .form-inputs
           = f.input :phone
 
