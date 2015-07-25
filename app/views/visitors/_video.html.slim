@@ -1,7 +1,9 @@
 #video-holder.screen-pane
   .brand-holder
-    h1.brand= link_to 'dmtf.in', root_url
-    h3 Automate your conference calls.
+    h1.brand dmtf.in
+    //= link_to 'dmtf.in', root_url
+    h3= @tagline
+
   <!--[if gt IE 9 | (!IE)]><!-->
     #video style="position: fixed; z-index: -99; width: 100%; height: 100%"
       - if request.env['mobvious.device_type'] == :desktop
@@ -14,5 +16,5 @@ javascript:
     hideVideo = function () {
       $('#video iframe').fadeOut();
     }
-    setTimeout('hidevideo()', 90 * 1000)
+    setTimeout('hideVideo()', 90 * 1000)
   });

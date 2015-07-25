@@ -2,15 +2,31 @@
 
 h1= current_user.name
 
-= simple_form_for(@user) do |f|
-  
-  .form-inputs
-    = f.input :phone
-
-  .form-actions
-    = f.button :submit, value: 'Update Profile'
 
 - if !current_user.phone.blank? && current_user.call_log.empty?
   hr
   h2 Ready to make your first call?
   h3= link_to('Beep Beep Boop dial me right in!', new_phone_call_path)
+
+  
+table.table
+  tr
+    th User Profile
+    th Membership level
+  tr
+    td
+      = simple_form_for(@user) do |f|
+        
+        .form-inputs
+          = f.input :phone
+
+        .form-actions
+        br
+          = f.button :submit, value: 'Update Profile', class: 'btn btn-primary'
+
+    td
+      span= "Current membership level: #{current_user.membership_level.name}"
+
+      br
+      br
+      input type="button" href="#" value="Upgrade Membership" class="btn btn-secondary" disabled="true"

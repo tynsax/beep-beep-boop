@@ -141,6 +141,7 @@ body {
     font-family: 'Pacifico', cursive;
     text-align: center;
     font-size: 8.0em;
+    color: #FFFFFF !important;
     a {
       color: #FFFFFF !important;
       &:hover {
@@ -173,12 +174,38 @@ body {
 
 body.visitors {
   .navbar.navbar-default {
-    background: transparent;
+    // background: transparent;
+    background: rgba(255, 255, 255, 0.2);
+    -webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
   }
-  a.navbar-brand {
+  .navbar.navbar-default.is-sticky {
+    background: rgba(255, 255, 255, 0.9);
+    -webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+    // a.navbar-brand,
+    // .navbar-nav > li > a {
+    //   opacity: 0.5;
+    //   color: #000;
+    //   &:hover {
+    //     text-shadow: 0 0 1px #FFF;
+    //     color: #000;
+    //   }
+    // }
+  }
+  a.navbar-brand,
+  .navbar-default .navbar-nav > li > a {
     opacity: 0.5;
+    color: #000;
     &:hover {
       text-shadow: 0 0 1px #FFF;
+      color: #000;
     }
   }
 }
@@ -204,6 +231,7 @@ body.phone_calls {
       // text-shadow: 1px 1px 5px #545454;
     }
   }
+
 
 
 a.navbar-brand {
@@ -232,8 +260,8 @@ a.navbar-brand {
   font-size: 1.8em;
   // font-family: ‘Arial Black’, Gadget, sans-serif;
   font-family: 'Muli', sans-serif;
-  text-transform: uppercase;
-  font-weight: bold;
+  // text-transform: uppercase;
+  // font-weight: bold;
   padding-top: 0.2em;
   a {
     &:hover {

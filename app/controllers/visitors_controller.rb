@@ -1,6 +1,13 @@
 class VisitorsController < ApplicationController
 	def index
 		redirect_to phone_calls_path and return if user_signed_in?
+
+		tags = [
+			'Never dial in to a conference again.',
+			'Automate your conference calls.',
+			'Automate your fucking conference calls.'
+		]
+		@tagline = tags.sample
 	end
 
 	def callstatus
