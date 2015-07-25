@@ -37,6 +37,6 @@ class @GoogleAnalytics
     document.domain.indexOf(str) isnt -1
 
   @analyticsId: ->
-    "#{Rails.application.secrets.google_analytics_id}"
+    'UA-30156149-9'
 
 GoogleAnalytics.load()
