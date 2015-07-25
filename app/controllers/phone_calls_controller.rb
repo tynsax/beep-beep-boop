@@ -4,6 +4,7 @@ class PhoneCallsController < ApplicationController
 
   before_action :set_phone_call, only: [:show, :edit, :update, :destroy, :redial]
   before_action :check_for_phone_number
+  before_action :authorize_call, only: [:redial, :create]
   # GET /phone_calls
   # GET /phone_calls.json
   def index
@@ -76,7 +77,9 @@ class PhoneCallsController < ApplicationController
     # build up a response
     response = Twilio::TwiML::Response.new do |r|
       r.Pause 1
-      r.Say 'Hello! Joining conference now', voice: 'alice'
+      # r.Play 'https://' + Rails.application.secrets.domain_name + '/audio/ding2.mp3'
+      r.Say 'Joining conference now', voice: 'man'
+      r.Play 'https://' + Rails.application.secrets.domain_name + '/audio/ding1.mp3'
       r.Dial callerId: '+1'+@phone_call.user.phone, action: 'https://' + Rails.application.secrets.domain_name +
         '/phone_calls/' + @phone_call.uuid + '/callback'  do |d|
         # d.Number sendDigits: @phone_call.access_code+'#', '+1'+@phone_call.to
@@ -100,7 +103,7 @@ class PhoneCallsController < ApplicationController
 
     response = Twilio::TwiML::Response.new do |r|
       r.Pause 1
-      r.Say 'Your conference call is ending now. Goodbye!', voice: 'alice'
+      r.Say 'Your conference call is ending now. Goodbye!', voice: 'man'
     end
 
     render xml: response.text
@@ -131,6 +134,15 @@ class PhoneCallsController < ApplicationController
       if user_signed_in? and current_user.phone.blank?
         flash[:notice] = 'Please provide your phone number to make calls.'
         redirect_to user_path and return 
+      end
+    end
+
+    def authorize_call
+      recent_calls = PhoneCall.where('user_id is ? and created_at > ?',
+        current_user.id, Time.zone.now - 1.day)
+      if recent_calls.size >= 5
+        flash[:error] = 'Sorry, your account type is limited to 5 calls per day.'
+        redirect_to root_url
       end
     end
 end
