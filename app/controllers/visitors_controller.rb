@@ -5,7 +5,7 @@ class VisitorsController < ApplicationController
 		tags = [
 			'Never dial in to a conference again.',
 			'Automate your conference calls.',
-			'Automate your fucking conference calls.'
+			'Dialing a phone is so 20th century.'
 		]
 		@tagline = tags.sample
 	end
