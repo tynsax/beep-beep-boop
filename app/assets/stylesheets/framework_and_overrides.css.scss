@@ -40,7 +40,7 @@ body.users {
 }
 main {
   @extend .container;
-  padding-bottom: 80px;
+  padding-bottom: 0;
   width: 100%;
   // margin-top: 66px; // accommodate the navbar
   padding-top: 0;
