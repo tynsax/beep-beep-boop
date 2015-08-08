@@ -80,10 +80,10 @@ class PhoneCallsController < ApplicationController
       # r.Play 'https://' + Rails.application.secrets.domain_name + '/audio/ding2.mp3'
       r.Say 'Joining conference now', voice: 'man'
       r.Play 'https://' + Rails.application.secrets.domain_name + '/audio/ding1.mp3'
-      r.Dial callerId: '+1'+@phone_call.user.phone, action: 'https://' + Rails.application.secrets.domain_name +
+      r.Dial callerId: @phone_call.user.phone, action: 'https://' + Rails.application.secrets.domain_name +
         '/phone_calls/' + @phone_call.uuid + '/callback'  do |d|
         # d.Number sendDigits: @phone_call.access_code+'#', '+1'+@phone_call.to
-        d.Number '+1'+@phone_call.to, sendDigits: @phone_call.access_code + '#'
+        d.Number @phone_call.to, sendDigits: @phone_call.access_code + '#'
         d.Pause 1
         d.Play digits: '#'
       end
