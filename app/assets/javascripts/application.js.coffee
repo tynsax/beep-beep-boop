@@ -22,9 +22,13 @@ $ ->
 
       $('.brand-holder').css('marginTop',parseInt(paneH/3) + 'px');
   
-  windowHeightz0r()
 
   $(window).resize ->
     windowHeightz0r()
 
+  ready = ->
+    windowHeightz0r()
+
+  $(document).ready(ready)
+  $(document).on('page:load', ready)
 

@@ -2,6 +2,9 @@ class PhoneCall < ActiveRecord::Base
   belongs_to :user
   include NonNullUuid
 
+  phony_normalize :to, :default_country_code => 'US'
+  validates_plausible_phone :to
+
   after_create :place_call
 
   def place_call
@@ -9,7 +12,7 @@ class PhoneCall < ActiveRecord::Base
     @client.calls
     @call = @client.calls.create(
       from: '+' + Rails.application.secrets.twilio_num.to_s,
-      to: '+1' + user.phone,
+      to: user.phone,
       url: 'https://' + Rails.application.secrets.domain_name +
         '/phone_calls/' + self.uuid
     )

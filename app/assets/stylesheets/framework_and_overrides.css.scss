@@ -65,6 +65,17 @@ main {
     text-transform: uppercase;
     font-weght: bold
   }
+
+  div.error {
+    background: #FAAFBB;
+    // padding: 10px;
+    border: 1px solid #E8909F;
+  }
+  // forms
+  .help-inline {
+    color: #900;
+    font-weight: bold;
+  }
 }
 section {
   @extend .row;
@@ -74,13 +85,15 @@ section {
 body {
   position: relative;
   .alert {
+    width: 100%;
     position: absolute;
-    right: 200px;
-    top: 1.0em;
+    // right: 200px;
+    top: 77px;
     z-index: 9999;
-    width: 300px;
     font-size: 1.2em;
     opacity: 0.9;
+    border-radius: 0;
+    text-align: center;
   }
 }
 
@@ -311,7 +324,7 @@ a.navbar-brand {
 
 body {
   font-family: 'Muli', sans-serif;
-  background: image-url('booths.jpg') no-repeat center center;
+  // background: image-url('booths.jpg') no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   position: relative;

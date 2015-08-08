@@ -23,6 +23,8 @@ gem 'omniauth-google-oauth2'
 gem 'font-awesome-rails'
 gem 'mobvious'
 gem 'flutie'
+gem 'phony_rails'
+gem 'valid_email'
 
 group :development do
   gem 'better_errors'

@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   has_many :phone_calls
   has_many :memberships
 
+  phony_normalize :phone, :default_country_code => 'US'
+  validates_plausible_phone :phone, :normalized_country_code => 'US'
+
 
   def self.create_with_omniauth(auth)
     create! do |user|
