@@ -1,12 +1,13 @@
 = image_tag(current_user.image, class: 'img-circle')
 
-h1= current_user.name
-
-
 - if !current_user.phone.blank? && current_user.call_log.empty?
   hr
   h2 Ready to make your first call?
   h3= link_to('Beep Beep Boop dial me right in!', new_phone_call_path)
+  br
+  br  
+
+h1= current_user.name
 
 
 .row

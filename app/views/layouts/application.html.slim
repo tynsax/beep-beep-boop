@@ -6,7 +6,7 @@ html
       = content_for?(:title) ? yield(:title) : 'dmtf.in'
     meta name="description" content="#{content_for?(:description) ? yield(:description) : 'dmtf.in'}"
     == stylesheet_link_tag "application", :media => 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Muli|Pacifico'
+    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Muli|Pacifico|Arimo'
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
     == csrf_meta_tags
     - if user_signed_in?

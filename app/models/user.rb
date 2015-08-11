@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   phony_normalize :phone, :default_country_code => 'US'
   validates_plausible_phone :phone, :normalized_country_code => 'US'
 
-
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth['provider']

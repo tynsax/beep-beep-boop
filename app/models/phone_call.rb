@@ -2,8 +2,8 @@ class PhoneCall < ActiveRecord::Base
   belongs_to :user
   include NonNullUuid
 
-  phony_normalize :to, :default_country_code => 'US'
-  validates_plausible_phone :to
+  phony_normalize :to, default_country_code: 'US'
+  validates :to, phony_plausible: true, presence: true
 
   after_create :place_call
 
