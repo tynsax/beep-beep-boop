@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 ruby '2.2.2'
 
 gem 'rails'
-gem 'sqlite3'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -27,6 +26,7 @@ gem 'phony_rails'
 gem 'valid_email'
 
 group :development do
+  gem 'sqlite3'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'capistrano', '~> 3.1.0'
@@ -53,4 +53,5 @@ group :test do
 end
 group :production do
   gem 'pg'
+  gem 'rails_12factor'
 end
