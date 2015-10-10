@@ -22,7 +22,8 @@ class User < ActiveRecord::Base
   end
 
   def membership_level
-    return MembershipLevel.first if memberships.empty?
+    return MembershipLevel.first.name if memberships.empty?
+    memberships.last.membership_level.name
   end
 
 end

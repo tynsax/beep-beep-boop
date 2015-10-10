@@ -14,7 +14,9 @@ class PhoneCall < ActiveRecord::Base
       from: '+' + Rails.application.secrets.twilio_num.to_s,
       to: user.phone,
       url: 'https://' + Rails.application.secrets.domain_name +
-        '/phone_calls/' + self.uuid
+        '/phone_calls/' + self.uuid,
+      'IfMachine': 'Hangup',
+      callerId: user.phone
     )
 
   end

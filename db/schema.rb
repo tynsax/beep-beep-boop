@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150725011408) do
+ActiveRecord::Schema.define(version: 20151010201056) do
 
   create_table "membership_levels", force: :cascade do |t|
     t.string   "name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150725011408) do
     t.string   "status",       limit: 255
     t.integer  "user_id"
     t.datetime "scheduled_at"
+    t.string   "answered_by"
   end
 
   add_index "phone_calls", ["user_id"], name: "index_phone_calls_on_user_id"
