@@ -44,7 +44,9 @@ class PhoneCallsController < ApplicationController
     @phone_call.from = '+' + Rails.application.secrets.twilio_num.to_s
     respond_to do |format|
       if @phone_call.save
-        format.html { redirect_to @phone_call, notice: 'Phone call was successfully created.' }
+        format.html { redirect_to @phone_call, notice: 'Phone call was successfully created.
+            Remember to answer the phone with "Hello" so we know it\'s a human!
+          ' }
         format.json { render :show, status: :created, location: @phone_call }
       else
         format.html { render :new }
@@ -71,19 +73,20 @@ class PhoneCallsController < ApplicationController
     # initiates conference
 
     @phone_call = PhoneCall.find_by_uuid(params[:uuid])
-    @phone_call.update(status: params['CallStatus'])
-    @phone_call.update(twilio_sid: params['CallSid']) if @phone_call.twilio_sid.nil?
+    @phone_call.update(status: params['CallStatus'],
+                       answered_by: params['AnsweredBy'],
+                       twilio_sid: params['CallSid'])
 
     # build up a response
     response = Twilio::TwiML::Response.new do |r|
-      r.Pause 1
       # r.Play 'https://' + Rails.application.secrets.domain_name + '/audio/ding2.mp3'
-      r.Say 'Joining conference now', voice: 'man'
-      r.Play 'https://' + Rails.application.secrets.domain_name + '/audio/ding1.mp3'
+      r.Say 'Hello. Connecting you now', voice: 'alice'
+
+      # r.Play 'https://' + Rails.application.secrets.domain_name + '/audio/ding1.mp3'
       r.Dial callerId: @phone_call.user.phone, action: 'https://' + Rails.application.secrets.domain_name +
-        '/phone_calls/' + @phone_call.uuid + '/callback'  do |d|
-        # d.Number sendDigits: @phone_call.access_code+'#', '+1'+@phone_call.to
-        d.Number @phone_call.to, sendDigits: @phone_call.access_code + '#'
+        '/phone_calls/' + @phone_call.uuid + '/callback', ifMachine: 'Continue' do |d|
+        d.Play 'https://' + Rails.application.secrets.domain_name + '/audio/ding1.mp3'
+        d.Number @phone_call.to, sendDigits: @phone_call.access_code.gsub(/\#$/, '') + '#'
         d.Pause 1
         d.Play digits: '#'
       end
@@ -94,6 +97,8 @@ class PhoneCallsController < ApplicationController
 
   def callback
     # received after call
+    logger.info "params " + params.inspect
+
     @phone_call = PhoneCall.find_by_uuid(params[:uuid])
     @phone_call.update(
         duration: params['DialCallDuration'],
@@ -140,7 +145,7 @@ class PhoneCallsController < ApplicationController
     def authorize_call
       recent_calls = PhoneCall.where('user_id = ? and created_at > ?',
         current_user.id, Time.zone.now - 1.day)
-      if recent_calls.size >= 5
+      if current_user.membership_level == 'Free' && recent_calls.size >= 5
         flash[:error] = 'Sorry, your account type is limited to 5 calls per day.'
         redirect_to root_url
       end
