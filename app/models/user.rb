@@ -25,4 +25,17 @@ class User < ActiveRecord::Base
     return MembershipLevel.first if memberships.empty?
     memberships.last.membership_level
   end
+
+  def calls_made_today
+    PhoneCall.where('user_id = ? and created_at > ?',
+      id, Time.zone.now - 1.day)
+  end
+
+  def remaining_calls
+    5 - calls_made_today.size
+  end
+
+  def remaining_calls?
+    remaining_calls.any?
+  end
 end

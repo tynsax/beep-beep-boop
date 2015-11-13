@@ -26,8 +26,12 @@ h1= current_user.name
         = f.button :submit, value: 'Update Profile', class: 'btn btn-primary'
 
   .col-xs-6
-    span= "Current membership level: #{current_user.membership_level.name}"
+    h4 Your current membership
 
-    br
-    br
-    input type="button" href="#" value="Upgrade Membership" class="btn btn-secondary" disabled="true"
+    h5== "As of: <b>#{Time.now}</b>"
+    ul
+      li== "Level: <b>#{current_user.membership_level.name}</b>"
+      li
+        input type="button" href="#" value="Upgrade Membership" class="btn btn-secondary" disabled="true"
+
+      li== "Conferences remaining today: <b>#{@user.remaining_calls}</b>"

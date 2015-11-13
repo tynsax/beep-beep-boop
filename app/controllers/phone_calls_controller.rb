@@ -143,9 +143,7 @@ class PhoneCallsController < ApplicationController
     end
 
     def authorize_call
-      recent_calls = PhoneCall.where('user_id = ? and created_at > ?',
-        current_user.id, Time.zone.now - 1.day)
-      if current_user.membership_level.name == 'Free' && recent_calls.size >= 5
+      if current_user.membership_level.name == 'Free' && current_user.remaining_calls?
         flash[:error] = 'Sorry, your account type is limited to 5 calls per day.'
         redirect_to root_url
       end
