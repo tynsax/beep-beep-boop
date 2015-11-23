@@ -32,10 +32,10 @@ class User < ActiveRecord::Base
   end
 
   def remaining_calls
-    5 - calls_made_today.size
+    5 - calls_made_today.count
   end
 
   def remaining_calls?
-    remaining_calls.any?
+    remaining_calls > 0 ? true : false
   end
 end
