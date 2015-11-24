@@ -143,7 +143,7 @@ class PhoneCallsController < ApplicationController
     end
 
     def authorize_call
-      if current_user.membership_level.name == 'Free' && current_user.remaining_calls?
+      if current_user.membership_level.name == 'Free' && !current_user.remaining_calls?
         flash[:error] = 'Sorry, your account type is limited to 5 calls per day.'
         redirect_to root_url
       end
