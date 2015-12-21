@@ -14,6 +14,8 @@ gem 'bootstrap-sass'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'simple_form'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
 gem 'slim-rails'
 gem 'thin'
 gem 'twilio-ruby'

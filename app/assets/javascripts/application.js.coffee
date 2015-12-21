@@ -3,6 +3,9 @@
 //= require turbolinks
 //= require bootstrap
 //= require knwl.min
+//= require moment
+//= require bootstrap-datetimepicker
+//= require pickers
 //= require_tree .
 
 
@@ -31,4 +34,3 @@ $ ->
 
   $(document).ready(ready)
   $(document).on('page:load', ready)
-

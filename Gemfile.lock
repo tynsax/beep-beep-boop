@@ -6,6 +6,22 @@ GIT
       capistrano (~> 3.1)
       sshkit (~> 1.3)
 
+GIT
+  remote: git://github.com/derekprior/momentjs-rails.git
+  revision: 3d35d16b03dc2a19658f3e26a37bb3d09fb38d9a
+  specs:
+    momentjs-rails (2.10.6)
+      railties (>= 3.1)
+
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: 36d21cec5da7f5b214925804f60e63c61c747023
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (4.7.16)
+      momentjs-rails (>= 2.9.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -356,6 +372,7 @@ DEPENDENCIES
   capybara
   coffee-rails
   database_cleaner
+  datetimepicker-rails!
   dotenv-rails
   factory_girl_rails
   faker
@@ -367,6 +384,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   mobvious
+  momentjs-rails (~> 2.9)!
   omniauth
   omniauth-github
   omniauth-google-oauth2

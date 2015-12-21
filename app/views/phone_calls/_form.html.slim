@@ -1,15 +1,37 @@
-.row
-  = simple_form_for(@phone_call) do |f|
-    .col-md-10
+= simple_form_for(@phone_call) do |f|
+
+  .row
+    .col-xs-4
       .form-inputs
         = f.input :to
-        
+    .col-xs-4.col-xs-offset-2
+      .form-inputs
         = f.input :access_code
 
-        / = f.input :scheduled_at
+  .row
+    .col-xs-4
+      .form-inputs
+        / .control-group.string
+        /   label for="scheduled_preview" class="string optional control-label" Scheduled at
+        /   .controls
+        /     input#scheduled_preview name="scheduled_preview" type="text" class="string optional"
 
-    .col-md-2
+        / br
+        = f.input :scheduled_at, as: :datetime_picker, placeholder: 'coming soon!'
+
+
+      br
+
       .form-actions
         = f.button :submit, value: 'Join conference', class: 'btn btn-lg btn-primary'
 
-      
+  br
+  br
+  br
+  .row
+    .col-xs-10.paste-row
+      .form-inputs style="position: relative"
+        = image_tag 'clipboard.png', class: 'clipboard-icon'
+        textarea#parsetext placeholder="Paste in your meeting details here"
+        / Please call in to the meeting at 800-555-1234 x1234567 at 11:00am
+        
