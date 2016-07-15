@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :phones
   resources :phone_calls
 
   root to: 'visitors#index'

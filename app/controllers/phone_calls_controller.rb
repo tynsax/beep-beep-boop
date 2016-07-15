@@ -104,7 +104,6 @@ class PhoneCallsController < ApplicationController
         duration: params['DialCallDuration'],
         status: params['DialCallStatus']
       )
-    # {"AccountSid"=>"AC30c3b77fac162fe15a8aae3569b6ccb1", "ToZip"=>"94107", "FromState"=>"MD", "Called"=>"+15105164120", "FromCountry"=>"US", "CallerCountry"=>"US", "CalledZip"=>"94107", "Direction"=>"outbound-api", "FromCity"=>"BRANDYWINE", "CalledCountry"=>"US", "CallerState"=>"MD", "DialCallDuration"=>"105", "CallSid"=>"CA1e4a28ddd137dc4d7645c4282c44f4b7", "CalledState"=>"CA", "From"=>"+13015794120", "CallerZip"=>"20601", "FromZip"=>"20601", "CallStatus"=>"in-progress", "DialCallSid"=>"CAb3b0a806d403463a5a1266d43da60a69", "ToCity"=>"SAN FRANCISCO", "ToState"=>"CA", "To"=>"+15105164120", "ToCountry"=>"US", "DialCallStatus"=>"completed", "CallerCity"=>"BRANDYWINE", "ApiVersion"=>"2010-04-01", "Caller"=>"+13015794120", "CalledCity"=>"SAN FRANCISCO", "uuid"=>"7b11362f-3b7a-485c-acab-2545c8b6326c"}
 
     response = Twilio::TwiML::Response.new do |r|
       r.Pause 1

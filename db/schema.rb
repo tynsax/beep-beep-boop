@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010201056) do
+ActiveRecord::Schema.define(version: 20160715045342) do
 
   create_table "membership_levels", force: :cascade do |t|
     t.string   "name"
@@ -50,6 +50,18 @@ ActiveRecord::Schema.define(version: 20151010201056) do
   end
 
   add_index "phone_calls", ["user_id"], name: "index_phone_calls_on_user_id"
+
+  create_table "phones", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "icon"
+    t.string   "number"
+    t.time     "confirmed_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "phones", ["user_id"], name: "index_phones_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name",       limit: 255

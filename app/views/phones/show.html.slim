@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong User:
+  = @phone.user
+p
+  strong Name:
+  = @phone.name
+p
+  strong Icon:
+  = @phone.icon
+p
+  strong Number:
+  = @phone.number
+p
+  strong Confirmed at:
+  = @phone.confirmed_at
+
+= link_to 'Edit', edit_phone_path(@phone)
+'|
+= link_to 'Back', phones_path

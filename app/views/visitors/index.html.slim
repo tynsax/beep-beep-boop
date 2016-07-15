@@ -1,33 +1,26 @@
-- if user_signed_in?
-  h1
-    = link_to raw('<i class="fa fa-plus-circle"></i>') + ' New Call', new_phone_call_path
 
-- else
-  / section
-  /   h2
-  /     = link_to raw('<i class="fa fa-sign-in"></i>') + ' Sign in with Google', signin_path
-  .screen-pane style="background: white; margin: 0 -15px 0 -15px;"
-    .jumbotron
-      .container
-        h1 Hello
-        p 
-          | Automate your conference calls. Instantly connect yourself to your conference without the hassle of dialing your access code and hitting pound.
+.screen-pane style="background: white; margin: 0 -15px 0 -15px;"
+  .jumbotron
+    .container
+      h1 Hello
+      p 
+        | Automate your conference calls. Instantly connect yourself to your conference without the hassle of dialing your access code and hitting pound.
 
-        p Now, if only we could automate <em>you</em>.
-        p = link_to 'Sign in with Google', signin_path, class: 'btn btn-primary btn-lg', role: 'button'
+      p Now, if only we could automate <em>you</em>.
+      p = link_to 'Sign in with Google', signin_path, class: 'btn btn-primary btn-lg', role: 'button'
 
 
-    .container.intro
-      .row
-        .col-md-4
-          h2 Stop dialing
-          p No more misdials when you are trying to enter your access code to your 6am meeting through a hangover-induced haze at 6:37.
+  .container.intro
+    .row
+      .col-md-4
+        h2 Stop dialing
+        p No more misdials when you are trying to enter your access code to your 6am meeting through a hangover-induced haze at 6:37.
 
-        .col-md-4
-          h2 It's the future
-          p Phones are so 20th century. I can use my SIP provider to route my call to my Google Voice account and ring all of my devices at once while dimming the lights and sending an email alert to my immediate supervisor, followed up by a twitter storm of the conference transcript. 
+      .col-md-4
+        h2 It's the future
+        p Phones are so 20th century. I can use my SIP provider to route my call to my Google Voice account and ring all of my devices at once while dimming the lights and sending an email alert to my immediate supervisor, followed up by a twitter storm of the conference transcript. 
 
-        .col-md-4
-          h2 How does it work?
-          p Just pick up your phone at the time your conference begins. Conference call you.
+      .col-md-4
+        h2 How does it work?
+        p Just pick up your phone at the time your conference begins. Conference call you.
 

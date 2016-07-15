@@ -10,16 +10,13 @@
 h1= current_user.name
 
 
-.row
+.row.edit-profile
   .col-xs-6
     h3 User Profile
     = simple_form_for(@user, url: user_path) do |f|
       
       .form-inputs
         = f.input :email
-        
-      .form-inputs
-        = f.input :phone
 
       .form-actions
       br
