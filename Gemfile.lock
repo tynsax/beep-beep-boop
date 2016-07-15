@@ -167,7 +167,7 @@ GEM
     memoist (0.12.0)
     method_source (0.8.2)
     mime-types (2.6.1)
-    mini_portile (0.6.2)
+    mini_portile2 (2.1.0)
     minitest (5.7.0)
     mobileesp_converted (0.2.3)
     mobvious (0.3.2)
@@ -179,8 +179,9 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
-    nokogiri (1.6.6.2)
-      mini_portile (~> 0.6.0)
+    nokogiri (1.6.8)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -205,6 +206,7 @@ GEM
       activesupport (>= 3.0)
       countries (~> 0.11, >= 0.11.5)
       phony (~> 2.12)
+    pkg-config (1.1.7)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -392,5 +394,8 @@ DEPENDENCIES
   uglifier
   valid_email
 
+RUBY VERSION
+   ruby 2.3.1p112
+
 BUNDLED WITH
-   1.10.6
+   1.12.5
