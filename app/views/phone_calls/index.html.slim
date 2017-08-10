@@ -1,37 +1,53 @@
 .container-fluid
-  .col-xs-9
-    textarea#parsetext placeholder="Please call in to the meeting at 800-555-1234 x1234567 at 11:00am"
-  .col-xs-3
-    == render 'recent_calls'
-.container-fluid
-  == render 'form'
+  .row
+    .col-md-9
+      == render 'form'
+
+    .col-md-3
+      == render 'recent_calls'
+
+    
       
 
 
 
 javascript:
   var knwl = new Knwl('english');
-  // knwl.register(PhoneExtensions);
+
   var analysePaste = function(str) {
     knwl.init(str);
     phones = knwl.get('phones');
+    times = analyseSchedule(str);
     dates = knwl.get('dates');
-    times = knwl.get('times');
-    console.log(phones);
-    // console.log(str)
+    codes = str.match(/\d{7}|\d{9}/);
+
     if (phones[0]) {
       $('#phone_call_to').val(phones[0].phone)
       $('#new_phone_call input[type=submit]').focus();
     }
+
+    if (times[0])
+      console.log(times)
+
+    if (dates[0]) {
+      console.log(dates[0])
+    }
+
+    if (codes[0]) {
+      $('#phone_call_access_code').val(codes[0]);
+    }
+  }
+
+  var analyseSchedule = function(str) {
+    knwl.init(str);
+    times = knwl.get('times');
+    return times;
   }
 
   var analyseInput = function() {
     analysePaste($('#parsetext').val());
   }
 
-  $('#parsetext').change(function () {
-    // analyseInput();
-  });
 
   $("#parsetext").bind('paste', function(strr) {
     setTimeout(function() {
