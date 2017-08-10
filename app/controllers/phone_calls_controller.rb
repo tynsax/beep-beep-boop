@@ -5,6 +5,9 @@ class PhoneCallsController < ApplicationController
   before_action :set_phone_call, only: [:show, :edit, :update, :destroy, :redial]
   before_action :check_for_phone_number
   before_action :authorize_call, only: [:redial, :create]
+
+  FREE_CONF_LINES = ['+16417153300'].freeze
+
   # GET /phone_calls
   # GET /phone_calls.json
   def index
@@ -44,9 +47,7 @@ class PhoneCallsController < ApplicationController
     @phone_call.from = '+' + Rails.application.secrets.twilio_num.to_s
     respond_to do |format|
       if @phone_call.save
-        format.html { redirect_to @phone_call, notice: 'Phone call was successfully created.
-            Remember to answer the phone with "Hello" so we know it\'s a human!
-          ' }
+        format.html { redirect_to @phone_call, notice: 'Phone call was successfully created.' }
         format.json { render :show, status: :created, location: @phone_call }
       else
         format.html { render :new }
@@ -77,17 +78,21 @@ class PhoneCallsController < ApplicationController
                        answered_by: params['AnsweredBy'],
                        twilio_sid: params['CallSid'])
 
+    send_digits = @phone_call.access_code.gsub(/\#$/, '') + '#'
+    send_digits = 'wwww' + send_digits + '1w#' if FREE_CONF_LINES.include?(@phone_call.to)
     # build up a response
     response = Twilio::TwiML::Response.new do |r|
-      # r.Play 'https://' + Rails.application.secrets.domain_name + '/audio/ding2.mp3'
-      r.Say 'Hello. Connecting you now', voice: 'alice'
+      # r.Play 'https://' + Rails.application.secrets.domain_name + '/audio/ding8.mp3'
+      r.Say 'Connecting you now', voice: 'alice'
 
       # r.Play 'https://' + Rails.application.secrets.domain_name + '/audio/ding1.mp3'
       r.Dial callerId: @phone_call.user.phone, action: 'https://' + Rails.application.secrets.domain_name +
-        '/phone_calls/' + @phone_call.uuid + '/callback', ifMachine: 'Continue' do |d|
-        d.Play 'https://' + Rails.application.secrets.domain_name + '/audio/ding1.mp3'
-        d.Number @phone_call.to, sendDigits: @phone_call.access_code.gsub(/\#$/, '') + '#'
+                                                       '/phone_calls/' + @phone_call.uuid + '/callback' do |d|
+        
+        # d.Play 'https://' + Rails.application.secrets.domain_name + '/audio/ding1.mp3'
+        d.Number @phone_call.to, sendDigits: send_digits
         d.Pause 1
+        
         d.Play digits: '#'
       end
     end
@@ -107,7 +112,7 @@ class PhoneCallsController < ApplicationController
 
     response = Twilio::TwiML::Response.new do |r|
       r.Pause 1
-      r.Say 'Your conference call is ending now. Goodbye!', voice: 'man'
+      r.Say 'Your conference call is ending now. Goodbye!', voice: 'alice'
     end
 
     render xml: response.text
