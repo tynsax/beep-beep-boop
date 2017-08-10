@@ -18,7 +18,6 @@ class PhoneCall < ActiveRecord::Base
       'IfMachine': 'Hangup',
       callerId: user.phone
     )
-
   end
 
 end

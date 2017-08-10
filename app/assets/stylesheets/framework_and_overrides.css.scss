@@ -302,16 +302,32 @@ a.navbar-brand {
   }
 }
 
+.clipboard-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 0;
+  opacity: 0.4;
+  height: 8.0em;
+}
 
+.paste-row {
+  margin-bottom: 4.0em;
+}
 #parsetext {
   width: 80%;
-  height: 400px;
+  height: 6.0em;
   @include user-form-input;
+  background: #FFFFFF;
+  border: 4px dashed #eee;
+  z-index: 1;
+  position: relative;
 }
 
 .simple_form {
   input[type=text] {
     @include user-form-input;
+    width: 100%;
   }
   .phone_call_result {
 
