@@ -16,6 +16,9 @@ h1= current_user.name
     = simple_form_for(@user, url: user_path) do |f|
       
       .form-inputs
+        = f.input :phone
+
+      .form-inputs
         = f.input :email
 
       .form-actions
