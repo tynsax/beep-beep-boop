@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715045342) do
+ActiveRecord::Schema.define(version: 20170829214804) do
 
   create_table "membership_levels", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "monthly_fee"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "daily_call_limit"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -33,17 +34,17 @@ ActiveRecord::Schema.define(version: 20160715045342) do
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id"
 
   create_table "phone_calls", force: :cascade do |t|
-    t.string   "to",           limit: 255
-    t.string   "from",         limit: 255
-    t.string   "duration",     limit: 255
-    t.string   "access_code",  limit: 255
-    t.string   "result",       limit: 255
+    t.string   "to"
+    t.string   "from"
+    t.string   "duration"
+    t.string   "access_code"
+    t.string   "result"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "clipboard"
-    t.string   "uuid",         limit: 255
-    t.string   "twilio_sid",   limit: 255
-    t.string   "status",       limit: 255
+    t.string   "uuid"
+    t.string   "twilio_sid"
+    t.string   "status"
     t.integer  "user_id"
     t.datetime "scheduled_at"
     t.string   "answered_by"
@@ -64,14 +65,14 @@ ActiveRecord::Schema.define(version: 20160715045342) do
   add_index "phones", ["user_id"], name: "index_phones_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "provider",   limit: 255
-    t.string   "uid",        limit: 255
+    t.string   "name"
+    t.string   "provider"
+    t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",      limit: 255
-    t.string   "phone",      limit: 255
-    t.string   "image",      limit: 255
+    t.string   "email"
+    t.string   "phone"
+    t.string   "image"
   end
 
 end

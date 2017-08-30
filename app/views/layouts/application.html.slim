@@ -17,8 +17,8 @@ html
       link rel='icon' type='image/ico' href="#{asset_url('favicon.ico')}"
   body class="#{body_class}"
     = render 'visitors/video' if homepage? or request.path == '/responses'
-    == render 'layouts/messages'
     header
       == render 'layouts/navigation'
     main[role="main"]
+      == render 'layouts/messages'
       == yield
