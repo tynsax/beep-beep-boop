@@ -16,6 +16,8 @@ h1= current_user.name
     = simple_form_for(@user, url: user_path) do |f|
       
       .form-inputs
+        .alert.alert-info
+          p Support for multiple phones, coming soon!
         = f.input :phone
 
       .form-inputs
@@ -34,4 +36,4 @@ h1= current_user.name
       li
         input type="button" href="#" value="Upgrade Membership" class="btn btn-secondary" disabled="true"
 
-      li== "Conferences remaining today: <b>#{@user.remaining_calls}</b>"
+      li== "Conferences remaining today: <b>#{@user.remaining_calls_today || 'Unlimited'}</b>"

@@ -84,12 +84,9 @@ section {
 
 body {
   position: relative;
+  font-size: 2.0rem;
   .alert {
     width: 100%;
-    position: absolute;
-    // right: 200px;
-    top: 77px;
-    z-index: 9999;
     font-size: 1.2em;
     opacity: 0.9;
     border-radius: 0;

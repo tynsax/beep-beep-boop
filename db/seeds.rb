@@ -1,12 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-# Environment variables (ENV['...']) can be set in the file .env file.
+memberships = { free: 5, premium: nil }
 
-['Free','Premium'].each do |membership_level|
-  MembershipLevel.find_or_create_by(name: membership_level)
+memberships.keys.each do |level_name|
+	record = MembershipLevel.find_or_create_by(name: level_name.capitalize)
+	record.update(daily_call_limit: memberships[level_name])
 end

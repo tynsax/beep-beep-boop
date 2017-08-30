@@ -141,14 +141,16 @@ class PhoneCallsController < ApplicationController
 
     def check_for_phone_number
       if user_signed_in? and current_user.phone.blank?
-        flash[:notice] = 'Please provide your phone number to make calls.'
+        flash[:error] = 'Please provide your phone number to make calls.'
         redirect_to user_path and return 
       end
     end
 
     def authorize_call
-      if current_user.membership_level.name == 'Free' && !current_user.remaining_calls?
-        flash[:error] = 'Sorry, your account type is limited to 5 calls per day.'
+      unless current_user.remaining_calls_today?
+        flash[:error] = "Sorry, your membership level is limited to " \
+                        "#{current_user.membership_level.daily_call_limit} " \
+                        "calls per day."
         redirect_to root_url
       end
     end
